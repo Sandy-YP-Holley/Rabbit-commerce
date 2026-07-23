@@ -2,7 +2,7 @@
 
 A React storefront for rabbit care essentials — hay, hutches, treats, and everything in between. Built as a fully client-side e-commerce experience with authentication, a shopping cart, product detail pages, and a validated checkout flow, backed by a mock localStorage "backend."
 
-**🔗 Live Demo:** [your-deployed-url.vercel.app](https://rabbit-commerce.vercel.app/) 
+**🔗 Live Demo:** [https://rabbit-commerce.vercel.app/](https://rabbit-commerce.vercel.app/) 
 
 ---
 
