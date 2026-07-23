@@ -39,10 +39,11 @@ function BunnyIcon() {
 
 export default function Navbar() {
   const { user, logout } = useAuth();
-  const { itemCount } = useCart();
+  const { itemCount, clearCart } = useCart();
   const navigate = useNavigate();
 
   function handleLogout() {
+    clearCart();
     logout();
     navigate("/");
   }
