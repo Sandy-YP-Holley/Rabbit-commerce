@@ -4,11 +4,13 @@ import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
 import ProductDetail from "./pages/ProductDetail";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
 function App() {
   return (
     <div className="app">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
