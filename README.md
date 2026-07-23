@@ -57,7 +57,7 @@ src/
 ### Installation
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Sandy-YP-Holley/Rabbit-commerce.git
 cd rabbit-commerce
 npm install
 ```
