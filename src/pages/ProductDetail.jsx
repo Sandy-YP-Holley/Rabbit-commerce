@@ -3,11 +3,13 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { getProductById, getRelatedProducts } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { user } = useAuth();
 
   const product = getProductById(id);
   const [quantity, setQuantity] = useState(1);
@@ -41,6 +43,12 @@ export default function ProductDetail() {
 
   function handleAddToCart() {
     if (outOfStock) return;
+
+    if (!user) {
+      navigate("/auth?mode=login", { state: { from: `/product/${product.id}` } });
+      return;
+    }
+
     addToCart(product, quantity);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
@@ -92,7 +100,7 @@ export default function ProductDetail() {
                 onClick={handleAddToCart}
                 disabled={outOfStock}
               >
-                {outOfStock ? "Unavailable" : added ? "Added to Cart ✓" : "Add to Cart"}
+                {outOfStock ? "Unavailable" : added ? "Added to Cart ✓" : !user ? "Log In to Add" : "Add to Cart"}
               </button>
               <button className="btn btn-secondary btn-large" onClick={() => navigate(-1)}>
                 Back
