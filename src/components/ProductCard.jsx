@@ -1,15 +1,25 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [added, setAdded] = useState(false);
   const outOfStock = product.stock === 0;
   const lowStock = product.stock > 0 && product.stock <= 8;
 
   function handleAddToCart() {
     if (outOfStock) return;
+
+    if (!user) {
+      navigate("/auth?mode=login", { state: { from: location.pathname } });
+      return;
+    }
+
     addToCart(product, 1);
     setAdded(true);
     setTimeout(() => setAdded(false), 1200);
@@ -35,7 +45,7 @@ export default function ProductCard({ product }) {
             onClick={handleAddToCart}
             disabled={outOfStock}
           >
-            {outOfStock ? "Unavailable" : added ? "Added ✓" : "Add to Cart"}
+            {outOfStock ? "Unavailable" : added ? "Added ✓" : !user ? "Log In to Add" : "Add to Cart"}
           </button>
         </div>
       </div>
