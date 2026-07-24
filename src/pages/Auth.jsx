@@ -107,7 +107,7 @@ export default function Auth() {
 
           <p className="auth-subtitle">
             {mode === "login"
-              ? "Welcome back — log in to check out your cart."
+              ? "Welcome back — log in to continue."
               : "Create an account to start shopping for your rabbit."}
           </p>
 
